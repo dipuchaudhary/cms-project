@@ -29,6 +29,39 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="category">Category</label>
+                    <select name="category_id" id="category" class="form-control">
+                        @foreach($categories as $category)
+                        <option value="{{$category->id}}"
+                               @if(isset($post))
+                                   @if($category->id == $post->category_id)
+                                   selected
+                                    @endif
+                                @endif
+                                >
+                                {{$category->name}}
+                        </option>
+                            @endforeach
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="tags">Tag</label>
+                    <select name="tags[]" id="tags" class="form-control tags-selector" multiple>
+                        @foreach($tags as $tag)
+                        <option value="{{$tag->id}}"
+                        @if( isset($post))
+                              @if($post->hasTag($tag->id))
+                                 selected
+                                @endif
+                          @endif
+                        >
+                             {{$tag->name}}
+                        </option>
+                            @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
                     <label for="published_at">Published At</label>
                     <input type="text" name="published_at" id="published_at" class="form-control" value="{{ isset($post) ? $post->published_at : '' }}">
                 </div>
@@ -59,9 +92,16 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.1/trix.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+
     <script>
         flatpickr('#published_at',{
-            enableTime : true
+            enableTime : true,
+            enableSeconds: true
+        });
+
+        $(document).ready(function() {
+            $('.tags-selector').select2();
         });
     </script>
 
@@ -71,4 +111,5 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.1/trix.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet"/>
     @endsection

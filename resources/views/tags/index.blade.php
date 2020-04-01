@@ -2,12 +2,12 @@
 
 @section('content')
     <div class="d-flex justify-content-end mb-2">
-        <a href="{{route('categories.create')}}" class="btn btn-success">Add Category</a>
+        <a href="{{route('tags.create')}}" class="btn btn-success">Add Tag</a>
     </div>
     <div class="card card-default">
-        <div class="card-header">Categories</div>
+        <div class="card-header">Tags</div>
         <div class="card-body">
-           @if($categories->count()>0)
+            @if($tags->count()>0)
                 <table class="table table-striped">
                     <thead>
                     <th>Name</th>
@@ -15,15 +15,15 @@
                     <th>Action</th>
                     </thead>
                     <tbody>
-                    @foreach($categories as $category)
+                    @foreach($tags as $tag)
                         <tr>
-                            <td>{{$category->name}}</td>
+                            <td>{{$tag->name}}</td>
                             <td>
-                                {{$category->posts->count()}}
+                                {{$tag->posts->count()}}
                             </td>
                             <td>
-                                <a href="{{route('categories.edit',$category->id)}}" class="btn btn-info btn-sm">Edit</a>
-                                <button onclick="handleDelete({{$category->id}})" class="btn btn-danger btn-sm">Delete</button>
+                                <a href="{{route('tags.edit',$tag->id)}}" class="btn btn-info btn-sm">Edit</a>
+                                <button onclick="handleDelete({{$tag->id}})" class="btn btn-danger btn-sm">Delete</button>
                             </td>
                         </tr>
                     @endforeach
@@ -36,7 +36,7 @@
                                 @csrf
                                 @method('DELETE')
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Delete category</h5>
+                                    <h5 class="modal-title">Delete tag</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -52,12 +52,12 @@
                         </div>
                     </div>
                 </div>
-               @else
-            <h5 class="text-center">No categories yet.</h5>
-               @endif
+            @else
+                <h5 class="text-center">No tags yet.</h5>
+            @endif
         </div>
     </div>
-    @endsection
+@endsection
 
 
 @section('scripts')
@@ -66,7 +66,7 @@
             $('#deletemodal').modal('show');
             console.log('deleting...');
             var form = document.getElementById('deleteform');
-            form = form.action ='/categories/'+id;
+            form = form.action ='/tags/'+id;
         }
     </script>
-    @endsection
+@endsection

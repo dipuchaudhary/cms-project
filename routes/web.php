@@ -17,14 +17,17 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::middleware(['auth'])->group(function (){
+    Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('categories','CategoryController');
+    Route::resource('categories','CategoryController');
 
-Route::resource('posts','PostsController');
+    Route::resource('posts','PostsController');
 
-Route::get('trashed-posts','PostsController@trashed')->name('trashed-posts.index');
+    Route::resource('tags','TagsController');
 
-Route::put('restore/{post}','PostsController@restore')->name('restore-posts');
+    Route::get('trashed-posts','PostsController@trashed')->name('trashed-posts.index');
 
+    Route::put('restore/{post}','PostsController@restore')->name('restore-posts');
 
+});
