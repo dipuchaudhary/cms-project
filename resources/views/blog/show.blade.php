@@ -89,3 +89,4 @@
 
     </main>
 @endsection
+<script id="dsq-count-scr" src="//blog-cms-4.disqus.com/count.js" async></script>
