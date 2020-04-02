@@ -14,7 +14,7 @@
                     <tbody>
                     @foreach($users as $user)
                         <tr>
-                            <td></td>
+                            <td><img src="{{ Gravatar::src($user->email) }}"></td>
                             <td>{{$user->name}}</td>
                             <td>
                                 {{$user->email}}
