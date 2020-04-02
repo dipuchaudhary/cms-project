@@ -58,6 +58,7 @@ class PostsController extends Controller
             'content' => $request->content,
             'image' => $image,
             'category_id' => $request->category_id,
+            'user_id' => auth()->user()->id,
             'published_at' => $request->published_at
         ]);
        if ($request->tags){

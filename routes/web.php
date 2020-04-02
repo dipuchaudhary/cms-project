@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','WelcomeController@index');
+
+Route::get('blog/posts/{post}',[\App\Http\Controllers\blog\PostsController::class,'show'])->name('post.show');
 
 Auth::routes();
 
@@ -34,5 +34,8 @@ Route::middleware(['auth'])->group(function (){
 
 Route::middleware(['auth','admin'])->group(function (){
     Route::get('users','UsersController@index')->name('users.index');
+    Route::get('users/edit-profile','UsersController@edit')->name('users.edit-profile');
+    Route::put('users/{user}/update-profile','UsersController@update')->name('users.update-profile');
+    Route::post('users/{user}/make-admin','UsersController@makeAdmin')->name('users.make-admin');
 });
 

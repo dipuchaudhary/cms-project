@@ -14,14 +14,17 @@
                     <tbody>
                     @foreach($users as $user)
                         <tr>
-                            <td><img src="{{ Gravatar::src($user->email) }}"></td>
+                            <td><img style="border-radius: 50%" src="{{ Gravatar::src($user->email) }}"></td>
                             <td>{{$user->name}}</td>
                             <td>
                                 {{$user->email}}
                             </td>
                             <td>
                                 @if(!$user->isAdmin())
-                                    <button type="submit" class="btn btn-success btn-sm">Make Admin</button>
+                                    <form action="{{ route('users.make-admin',$user->id) }}" method="post">
+                                        @csrf
+                                        <button type="submit" class="btn btn-success btn-sm">Make Admin</button>
+                                    </form>
                                @endif
                             </td>
                         </tr>
