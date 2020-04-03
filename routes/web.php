@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/','WelcomeController@index');
+Route::get('/','WelcomeController@index')->name('welcome');
 
 Route::get('blog/posts/{post}',[\App\Http\Controllers\blog\PostsController::class,'show'])->name('post.show');
 
