@@ -13,7 +13,11 @@
 
 Route::get('/','WelcomeController@index')->name('welcome');
 
-Route::get('blog/posts/{post}',[\App\Http\Controllers\blog\PostsController::class,'show'])->name('post.show');
+Route::get('blog/posts/{post}',[\App\Http\Controllers\blog\PostsController::class,'show'])->name('blog.show');
+
+Route::get('blog/categories/{category}',[\App\Http\Controllers\blog\PostsController::class,'category'])->name('blog.category');
+
+Route::get('blog/tags/{tag}',[\App\Http\Controllers\blog\PostsController::class,'tag'])->name('blog.tag');
 
 Auth::routes();
 
