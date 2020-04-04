@@ -32,31 +32,17 @@
             </a>
         </div>
 
-        {{--        <section class="navbar-mobile">--}}
-        {{--            <span class="navbar-divider d-mobile-none"></span>--}}
-
-        {{--            <ul class="nav nav-navbar">--}}
-        {{--                <li class="nav-item">--}}
-        {{--                    <a class="nav-link" href="#">Demos <span class="arrow"></span></a>--}}
-        {{--                    <ul class="nav">--}}
-
-        {{--                        <li class="nav-item">--}}
-        {{--                            <a class="nav-link" href="#">SaaS <span class="arrow"></span></a>--}}
-        {{--                            <nav class="nav">--}}
-        {{--                                <a class="nav-link" href="../demo/saas-1.html">SaaS 1</a>--}}
-        {{--                                <a class="nav-link" href="../demo/saas-2.html">SaaS 2</a>--}}
-        {{--                                <a class="nav-link" href="../demo/saas-3.html">SaaS 3</a>--}}
-        {{--                                <a class="nav-link" href="../demo/saas-4.html">SaaS 4</a>--}}
-        {{--                            </nav>--}}
-        {{--                        </li>--}}
-
-        {{--                    </ul>--}}
-        {{--                </li>--}}
-
-        {{--            </ul>--}}
-        {{--        </section>--}}
-
-        <a class="btn btn-xs btn-round btn-success" href="{{route('login')}}">Login</a>
+        <div class="flex-center position-ref full-height">
+            @if (Route::has('login'))
+                <div class="top-right links">
+                    @auth
+                        <a class="btn btn-xs btn-round btn-success" href="{{url('/home')}}">Home</a>
+                    @else
+                        <a class="btn btn-xs btn-round btn-success" href="{{route('login')}}">Login</a>
+                    @endauth
+                </div>
+            @endif
+        </div>
     </div>
 </nav><!-- /.navbar -->
 
